@@ -3,21 +3,20 @@ const ActivityModel = db.activities;
 
 
 const validateActivity = (request) => {
-    let errors = [];
     if (!request.title) {
-        errors.push("title cannot be null");
+        return "title cannot be null";
     }
 
     if (!request.email) {
-        errors.push("email cannot be null");
+        return "email cannot be null";
     }
-    return errors;
+    return "";
 }
 
 exports.create = async (req, res) => {
     let valiMessage = validateActivity(req.body);
 
-    if (valiMessage.length > 0) {
+    if (valiMessage) {
         res.status(400).send({
             status: "Bad Request",
             message: valiMessage,
@@ -130,7 +129,7 @@ exports.update = async (req, res) => {
     let idActivity = req.params.id;
     let valiMessage = validateActivity(req.body);
 
-    if (valiMessage.length > 0) {
+    if (valiMessage) {
         res.status(400).send({
             status: "Bad Request",
             message: valiMessage,

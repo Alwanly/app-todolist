@@ -3,16 +3,15 @@ const TodoModel = db.todos;
 
 
 const validateTodo = (request) => {
-    let errors = [];
-    if (!request.activity_group_id) errors.push("activity_group_id cannot be null");
-    if (!request.title) errors.push("title cannot be null");
-    return errors
+    if (!request.activity_group_id) return "activity_group_id cannot be null";
+    if (!request.title) return "title cannot be null";
+    return "";
 }
 
 
 exports.create = async (req, res) => {
     let valiMessage = validateTodo(req.body);
-    if (valiMessage.length > 0) {
+    if (valiMessage) {
         res.status(400).send({
             status: "Bad Request",
             message: valiMessage,
