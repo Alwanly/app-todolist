@@ -45,13 +45,7 @@ exports.create = async (req, res) => {
 }
 exports.findAll = async (req, res) => {
     try {
-        let data = await ActivityModel.findAll({
-
-            order: [
-                ['created_at', 'DESC']
-            ]
-
-        });
+        let data = await ActivityModel.findAll();
         res.status(200).send({
             status: "Success",
             message: "Success",
@@ -80,7 +74,7 @@ exports.findOne = async (req, res) => {
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Activity with ID " + idActivity + " Not found",
+                message: "Activity with ID " + idActivity + " Not Found",
                 data: {}
             });
         }
@@ -112,7 +106,7 @@ exports.delete = async (req, res) => {
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Activity with ID " + idActivity + " Not found",
+                message: "Activity with ID " + idActivity + " Not Found",
                 data: {}
             });
         }
@@ -127,16 +121,15 @@ exports.delete = async (req, res) => {
 }
 exports.update = async (req, res) => {
     let idActivity = req.params.id;
-    let valiMessage = validateActivity(req.body);
 
-    if (valiMessage) {
+    if (!req.body.title) {
         res.status(400).send({
             status: "Bad Request",
-            message: valiMessage,
+            message: "title cannot be null",
             data: {}
         })
         return;
-    };
+    }
     try {
         let data = await ActivityModel.update(req.body, {
             where: {
@@ -144,15 +137,16 @@ exports.update = async (req, res) => {
             }
         });
         if (data == 1) {
+            data = await ActivityModel.findByPk(idActivity);
             res.status(200).send({
                 status: "Success",
                 message: "Success",
-                data: {}
+                data
             });
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Activity with ID " + idActivity + " Not found",
+                message: "Activity with ID " + idActivity + " Not Found",
                 data: {}
             });
         }

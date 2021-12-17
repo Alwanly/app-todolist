@@ -21,3 +21,18 @@ npm install --save-dev nodemon@latest
 ```
 npm run dev
 ```
+
+## How to run App withd Docker
+1. pull docker with url.
+```
+dev/alwanltest:v5
+```
+2. run docker with command and input your database.
+```
+docker run -d -p 3030:3030
+-e MYSQL_HOST=  
+-e MYSQL_PORT=
+-e MYSQL_USER=
+-e MYSQL_PASSWORD=
+-e MYSQL_DBNAME=
+```

@@ -14,15 +14,15 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        priority: {
-            type: Sequelize.ENUM('very-low', 'low', 'normal', 'high', 'very-high'),
-            allowNull: false,
-            defaultValue: 'very-high'
-        },
         is_active: {
             type: Sequelize.BOOLEAN,
             allowNull: false,
             defaultValue: 1
+        },
+        priority: {
+            type: Sequelize.ENUM('very-low', 'low', 'normal', 'high', 'very-high'),
+            allowNull: false,
+            defaultValue: 'very-high'
         }
     }, {
         scopes: {

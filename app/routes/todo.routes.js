@@ -9,5 +9,5 @@ module.exports = app => {
     router.delete("/:id", todo.delete);
     router.patch("/:id", todo.update);
 
-    app.use("/api/todo-items", router);
+    app.use("/todo-items", router);
 }

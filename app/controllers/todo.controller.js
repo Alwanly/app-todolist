@@ -76,7 +76,7 @@ exports.findOne = async (req, res) => {
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Todo with ID " + idTodo + " Not found",
+                message: "Todo with ID " + idTodo + " Not Found",
                 data: {}
             });
         }
@@ -108,7 +108,7 @@ exports.update = async (req, res) => {
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Todo with ID " + idTodo + " Not found",
+                message: "Todo with ID " + idTodo + " Not Found",
                 data: {}
             });
         }
@@ -139,7 +139,7 @@ exports.delete = async (req, res) => {
         } else {
             res.status(404).send({
                 status: "Not Found",
-                message: "Todo with ID " + idTodo + " Not found",
+                message: "Todo with ID " + idTodo + " Not Found",
                 data: {}
             });
         }

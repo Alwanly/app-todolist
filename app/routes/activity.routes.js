@@ -9,5 +9,5 @@ module.exports = app => {
     router.delete("/:id", activity.delete);
     router.patch("/:id", activity.update);
 
-    app.use("/api/activity-groups", router);
+    app.use("/activity-groups", router);
 }

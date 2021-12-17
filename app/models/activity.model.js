@@ -6,19 +6,26 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        title: {
+        email: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        email: {
+        title: {
             type: Sequelize.STRING,
             allowNull: false
         }
     }, {
+        scopes: {
+            notDeleted: {
+                attributes: ['id', 'title', 'email', 'created_at', 'updated_at']
+            }
+        },
         sequelize,
         timestamps: true,
+        paranoid: true,
         createdAt: "created_at",
-        updatedAt: "updated_at"
+        updatedAt: "updated_at",
+        deletedAt: "deleted_at"
     });
     return Activities;
 }
